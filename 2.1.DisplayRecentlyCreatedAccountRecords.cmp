@@ -1,0 +1,61 @@
+<aura:component implements="force:appHostable,
+                            flexipage:availableForAllPageTypes,
+                            flexipage:availableForRecordHome,
+                            force:hasRecordId,
+                            forceCommunity:availableForAllPageTypes,
+                            force:lightningQuickAction" 
+                access="global" 
+                controller="DisplayRecentlyCreatedAccountController">
+    <aura:attribute name="accounts" type="List"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <h2 class="slds-text-align_center" style="background-color: #336699; color: #ffffff;">LIST OF 10 MOST RECENTLY CREATED "ACCOUNTS"</h2>
+    <table class="slds-table slds-table_bordered slds-table_striped" border="1">
+        <thead>
+            <tr class="slds-text-title_caps">
+                <th scope="col">
+                    <div class="slds-truncate">Account Name</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate">Account Number</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate">Annual Revenue</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate">Email</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate">Phone</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate">Created Date</div>
+                </th>
+            </tr>
+        </thead>
+        <aura:iteration items="{!v.accounts}" var="account">
+            <tr>
+                <td data-label="Account Name">
+                    <div class="slds-truncate">{!account.Name}</div>
+                </td>
+                <td data-label="Account Number">
+                    <div class="slds-truncate">{!account.AccountNumber}</div>
+                </td>
+                <td data-label="Annual Revenue">
+                    <div class="slds-truncate">{!account.AnnualRevenue}</div>
+                </td>
+                <td data-label="Email">
+                    <div class="slds-truncate">{!account.EMAIL__c}</div>
+                </td>
+                <td data-label="Phone">
+                    <div class="slds-truncate">{!account.Phone}</div>
+                </td>
+                <td data-label="Created Date">
+                    <div class="slds-truncate">{!account.CreatedDate}</div>
+                </td>
+            </tr>
+        </aura:iteration>
+        <tbody>
+            
+        </tbody>
+    </table>
+</aura:component>
