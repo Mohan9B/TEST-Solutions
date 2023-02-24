@@ -1,0 +1,17 @@
+trigger ConTrigger on Contact (before insert, after insert, before update, after update, before delete, after delete, after undelete) {
+    if(trigger.isBefore && Trigger.isInsert) {
+        ConTriggerHandler.doBeforeInsert(Trigger.New);
+    }else if(Trigger.isAfter && Trigger.Isinsert) {
+       ConTriggerHandler.doAfterInsert(Trigger.New,Trigger.NewMap);
+    } else if(Trigger.isBefore && Trigger.isUpdate) {
+        ConTriggerHandler.doBeforeUpdate(Trigger.New, Trigger.NewMap, Trigger.Old, Trigger.OldMap);
+    } else if(Trigger.isAfter && Trigger.isUpdate) {
+       ConTriggerHandler.doAfterUpdate(Trigger.New,Trigger.NewMap, Trigger.Old, Trigger.OldMap);
+    } else if(Trigger.isBefore && Trigger.isDelete) {
+        ConTriggerHandler.doBeforeDelete(Trigger.Old, Trigger.OldMap);
+    } else if(Trigger.isAfter && Trigger.isDelete) {
+       ConTriggerHandler.doAfterDelete(Trigger.Old, Trigger.OldMap);
+    } else if(Trigger.isAfter && Trigger.isUndelete) {
+       ConTriggerHandler.doAfterUndelete(Trigger.New,Trigger.NewMap);
+    }
+}
