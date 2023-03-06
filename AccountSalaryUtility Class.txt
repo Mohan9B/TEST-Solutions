@@ -1,0 +1,30 @@
+trigger UpdateAccountSalary on Account_Salary__c (after insert, after update) {
+
+    Set<Id> accountIdsToUpdate = new Set<Id>();
+    
+    for (Account_Salary__c accountSalary : Trigger.new) {
+        
+        accountIdsToUpdate.add(accountSalary.Account__c);
+    }
+    
+    List<Account> accounts = [SELECT Id, (SELECT Id, Salary__c FROM Account_Salaries__r) FROM Account WHERE Id IN :accountIdsToUpdate];
+    
+    for (Account account : accounts) {
+        
+        Decimal totalSalary = 0;
+        Decimal maxSalary = 0;
+        
+        for (Account_Salary__c accountSalary : account.Account_Salaries__r) {
+            
+            totalSalary += accountSalary.Salary__c;
+            
+            if (accountSalary.Salary__c > maxSalary) {
+                maxSalary = accountSalary.Salary__c;
+            }
+        }
+        
+        account.Total_Salary__c = totalSalary;
+        account.Max_Salary__c = maxSalary;
+        update accounts;
+    }
+}

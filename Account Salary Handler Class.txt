@@ -1,0 +1,27 @@
+public class AccountSalaryHandler{
+	 public static void doBeforeInsert(List<Account_Salary__C> newAccountList){
+       
+    }
+    public static void doAfterInsert(List<Account_Salary__C> newAccountList,  Map<Id, Account_Salary__C> newAccountMap){
+        AccountSalaryUtility.accountTotalSalary(newAccountList);
+    }
+    public static void doBeforeUpdate(List<Account_Salary__C> newAccountList, Map<Id, Account_Salary__C> newAccountMap, List<Account_Salary__C> oldAccountList, Map<Id, Account_Salary__C> oldAccountMap){
+        
+    }
+    public static void doAfterUpdate(List<Account_Salary__C> newAccountList, Map<Id, Account_Salary__C> newAccountMap, List<Account_Salary__C> oldAccountList, Map<Id, Account_Salary__C> oldAccountMap){
+        List<Account_Salary__C> accList=new List<Account_Salary__C>();
+        accList.addAll(newAccountList);
+        accList.addAll(oldAccountList);
+        AccountSalaryUtility.accountTotalSalary(accList);
+    }
+    public static void doBeforeDelete(List<Account_Salary__C> oldAccountList, Map<Id, Account_Salary__C> oldAccountMap){
+        
+    }
+    public static void doAfterDelete(List<Account_Salary__C> oldAccountList, Map<Id, Account_Salary__C> oldAccountMap){
+        
+    }
+    public static void doAfterUndelete(List<Account_Salary__C> newAccountList, Map<Id, Account_Salary__C> newAccountMap){
+        
+    }
+
+}

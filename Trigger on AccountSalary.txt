@@ -1,0 +1,17 @@
+trigger accAccountSalary on Account_Salary__c (before insert, after insert, before update, after update, before delete, after delete, after undelete) {
+    if(trigger.isBefore && Trigger.isInsert) {
+        
+    }else if(Trigger.isAfter && Trigger.Isinsert) {
+       AccountSalaryHandler.doAfterInsert(Trigger.New,Trigger.NewMap);
+    } else if(Trigger.isBefore && Trigger.isUpdate) {
+       AccountSalaryHandler.doAfterUpdate(Trigger.New,Trigger.NewMap, Trigger.Old, Trigger.OldMap);
+    } else if(Trigger.isAfter && Trigger.isUpdate) {
+       AccountSalaryHandler.doAfterUpdate(Trigger.New,Trigger.NewMap, Trigger.Old, Trigger.OldMap);
+    } else if(Trigger.isBefore && Trigger.isDelete) {
+       
+    } else if(Trigger.isAfter && Trigger.isDelete) {
+       
+    } else if(Trigger.isAfter && Trigger.isUndelete) {
+       
+    }
+}
